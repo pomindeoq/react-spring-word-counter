@@ -7,7 +7,7 @@ public enum ErrorCodes {
     FILE_MISSING("Please select a file!"),
     FILE_EMPTY("Please select not empty file!"),
     FILE_SIZE_TOO_LARGE("File size is too large. Please upload files below 128KB!"),
-    FILE_TYPE_NOT_VALID("This file type is not supported! Only .txt .pdf files are allowed"),
+    FILE_TYPE_NOT_VALID("This file type is not supported! Only .txt files are allowed"),
 
     FILE_DATA_INVALID("This file/files data can not be read and parsed");
     private final String message;
