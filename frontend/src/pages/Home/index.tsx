@@ -1,4 +1,3 @@
-import { info } from "console";
 import React, { useState } from "react";
 import {
   Container,
@@ -21,11 +20,13 @@ function App() {
   const uploadHandler = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
     let formData = new FormData();
-    formData.append("file", selectedFiles[0]);
-    setData([])
+    console.log(selectedFiles)
+    for (let i = 0 ; i < selectedFiles.length ; i++) {
+      formData.append("file", selectedFiles[i]);
+    }
+    console.log(formData.getAll("file"));
     setProgress(null);
     setError("");
-    console.log(formData.toString());
     http
       .post("/upload", formData, {
         headers: {
@@ -37,15 +38,12 @@ function App() {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setData(response.data);
         setError("");
       })
       .catch((error) => {
         console.log(error);
-        if (error.message) {
-          setError(error.message);
-        } else {
+         if(error?.response) {
           const { code, message } = error?.response?.data;
           switch (code) {
             case "FILE_EMPTY":
@@ -58,6 +56,8 @@ function App() {
               setError("Sorry! Something went wrong. Please try again later");
               break;
           }
+        } else {     
+          setError(error.message);
         }
       });
   };
@@ -81,7 +81,7 @@ function App() {
               <Form.Label>Word count from files app</Form.Label>
               <Form.Control type="file" multiple />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Button variant="info" type="submit">
                 Upload
               </Button>
