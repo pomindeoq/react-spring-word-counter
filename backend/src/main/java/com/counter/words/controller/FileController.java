@@ -15,7 +15,7 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/upload")
-    public ResponseEntity<List<WordGroupDto>> uploadFile(@RequestParam(value = "file", required = false) MultipartFile file){
-        return ResponseEntity.ok(fileService.parseFile(file));
+    public ResponseEntity<List<WordGroupDto>> uploadFile(@RequestParam(value = "file", required = false) MultipartFile[] files){
+        return ResponseEntity.ok(fileService.parseFile(files));
     }
 }

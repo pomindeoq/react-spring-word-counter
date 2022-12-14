@@ -9,6 +9,5 @@ import java.util.List;
 @Getter
 public class WordGroupDto {
     String name;
-
     List<WordCount> words;
 }

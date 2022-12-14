@@ -1,14 +1,12 @@
 package com.counter.words.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
 import java.util.EnumSet;
 
 @Builder
-@Data
-@AllArgsConstructor
+@Getter
 public class WordCount {
     String word;
     Long count;
