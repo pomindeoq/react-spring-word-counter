@@ -45,21 +45,21 @@ public class FileService {
                     .flatMap((List::stream))
                     .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         } catch (IOException e) {
-            throw ErrorCodes.FILE_DATA_INVALID.getException();
+            throw ErrorCodes.FILES_DATA_INVALID.getException();
         }
     }
 
     private List<MultipartFile> getValidFiles(MultipartFile[] files) {
         if (files == null) {
-            throw ErrorCodes.FILE_MISSING.getException();
+            throw ErrorCodes.FILES_MISSING.getException();
         }
         List<MultipartFile> notEmptyFiles = FileUtils.filterEmpty(files);
         if (notEmptyFiles.isEmpty()) {
-            throw ErrorCodes.FILE_EMPTY.getException();
+            throw ErrorCodes.FILES_EMPTY.getException();
         }
         List<MultipartFile> validTypeFiles = FileUtils.filterWrongType(notEmptyFiles);
         if (validTypeFiles.isEmpty()) {
-            throw ErrorCodes.FILE_TYPE_NOT_VALID.getException();
+            throw ErrorCodes.FILES_TYPE_NOT_VALID.getException();
         }
         return validTypeFiles;
     }

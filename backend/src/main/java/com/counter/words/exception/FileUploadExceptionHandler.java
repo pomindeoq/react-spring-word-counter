@@ -17,8 +17,8 @@ public class FileUploadExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<Map<String, Object>> handleMaxSizeException(MaxUploadSizeExceededException ex) {
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("code", ErrorCodes.FILE_SIZE_TOO_LARGE.toString());
-        body.put("message", ErrorCodes.FILE_SIZE_TOO_LARGE.getException().getMessage());
+        body.put("code", ErrorCodes.FILES_SIZE_TOO_LARGE.toString());
+        body.put("message", ErrorCodes.FILES_SIZE_TOO_LARGE.getException().getMessage());
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN,
                 "*");

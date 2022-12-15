@@ -4,12 +4,12 @@ import com.counter.words.exception.GeneralException;
 
 public enum ErrorCodes {
 
-    FILE_MISSING("Please select a file!"),
-    FILE_EMPTY("Please select not empty files!"),
-    FILE_SIZE_TOO_LARGE("File size is too large. Please upload files below 128KB!"),
-    FILE_TYPE_NOT_VALID("files type is not supported! Only .txt files are allowed"),
+    FILES_MISSING("Please select a file!"),
+    FILES_EMPTY("Please select not empty files!"),
+    FILES_SIZE_TOO_LARGE("File size is too large. Please upload files below 128KB!"),
+    FILES_TYPE_NOT_VALID("Files type is not supported! Only .txt files are allowed"),
 
-    FILE_DATA_INVALID("This file/files data can not be read and parsed");
+    FILES_DATA_INVALID("Files data is not valid, please upload another file");
     private final String message;
 
     ErrorCodes(String message) {
