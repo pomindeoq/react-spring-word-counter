@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="576e5758-15cd-4b1e-8359-89b9d18c6c23" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/counter/words/model/MediaMimeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/counter/words/model/MediaMimeType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +65,18 @@
       <updated>1670938065444</updated>
       <workItem from="1670938067026" duration="4622000" />
       <workItem from="1670944608919" duration="2775000" />
-      <workItem from="1670962420584" duration="3301000" />
+      <workItem from="1670962420584" duration="4034000" />
+      <workItem from="1671052213941" duration="39000" />
+      <workItem from="1671198776741" duration="9000" />
     </task>
+    <task id="LOCAL-00001" summary="add docker">
+      <created>1670967805439</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1670967805439</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,5 +92,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="add docker" />
   </component>
 </project>
