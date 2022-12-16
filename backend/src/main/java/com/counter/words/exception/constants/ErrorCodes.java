@@ -6,7 +6,7 @@ public enum ErrorCodes {
 
     FILES_MISSING("Please select a file!"),
     FILES_EMPTY("Please select not empty files!"),
-    FILES_SIZE_TOO_LARGE("File size is too large. Please upload files below 128KB!"),
+    FILES_SIZE_TOO_LARGE("Some files size is too large. Please upload files below 128KB!"),
     FILES_TYPE_NOT_VALID("Files type is not supported! Only .txt files are allowed"),
 
     FILES_DATA_INVALID("Files data is not valid, please upload another file");
