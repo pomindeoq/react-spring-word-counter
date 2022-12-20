@@ -5,7 +5,7 @@ import api from "../../api/api";
 import Results from "../../components/Results/Results";
 import UploadForm from "../../components/UploadForm/UploadForm";
 import { Data } from "../../models/response";
-import "./styles.css"
+import "./styles.css";
 
 function App() {
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -67,7 +67,7 @@ function App() {
   return (
     <Container fluid="md">
       <Row className="justify-content-md-center">
-        <Col className="col-md-6" align="center">
+        <Col className="col-md-4" align="center">
           <br />
           <h5>Word Counter from files application</h5>
           <UploadForm
@@ -78,8 +78,14 @@ function App() {
           />
         </Col>
       </Row>
-      {!loading && <Results data={data} />}
-      {loading && <Spinner className="spinner" animation="grow" variant="info" />}
+      <Row className="justify-content-md-center">
+        <Col className="col-md-8">
+          {!loading && <Results data={data} />}
+          {loading && (
+            <Spinner className="spinner" animation="grow" variant="info" />
+          )}
+        </Col>
+      </Row>
     </Container>
   );
 }
