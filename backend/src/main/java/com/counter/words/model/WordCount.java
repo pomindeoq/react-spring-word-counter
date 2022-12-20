@@ -1,13 +1,12 @@
 package com.counter.words.model;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 
 import java.util.EnumSet;
-import java.util.Objects;
 
 @Builder
-@Getter
+@Data
 public class WordCount {
     String word;
     Long count;
@@ -21,18 +20,5 @@ public class WordCount {
                 .map(WordGroup::getName)
                 .findFirst()
                 .orElse(null);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WordCount wordCount = (WordCount) o;
-        return Objects.equals(word, wordCount.word) && Objects.equals(count, wordCount.count);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(word, count);
     }
 }
