@@ -1,9 +1,8 @@
 package com.counter.words.utils;
 
-import com.counter.words.model.MediaMimeType;
-import com.counter.words.model.WordCount;
-import com.counter.words.model.WordGroup;
-import com.counter.words.model.WordGroupDto;
+import com.counter.words.model.enums.MediaMimeType;
+import com.counter.words.model.records.WordCountRecord;
+import com.counter.words.model.records.WordGroupDtoRecord;
 import lombok.experimental.UtilityClass;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,15 +25,15 @@ public class FileUtils {
                 .toList();
     }
 
-    public static WordCount buildWordCount(Map.Entry<String, Long> entry) {
-        return WordCount.builder()
+    public static WordCountRecord buildWordCount(Map.Entry<String, Long> entry) {
+        return WordCountRecord.builder()
                 .word(entry.getKey())
                 .count(entry.getValue())
                 .build();
     }
 
-    public static WordGroupDto buildWordGroupDto(Map.Entry<String, List<WordCount>> entry) {
-        return WordGroupDto.builder()
+    public static WordGroupDtoRecord buildWordGroupDto(Map.Entry<String, List<WordCountRecord>> entry) {
+        return WordGroupDtoRecord.builder()
                 .name(entry.getKey())
                 .words(entry.getValue())
                 .build();

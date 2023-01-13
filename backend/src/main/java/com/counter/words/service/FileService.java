@@ -1,8 +1,8 @@
 package com.counter.words.service;
 
 import com.counter.words.exception.constants.ErrorCodes;
-import com.counter.words.model.WordCount;
-import com.counter.words.model.WordGroupDto;
+import com.counter.words.model.records.WordCountRecord;
+import com.counter.words.model.records.WordGroupDtoRecord;
 import com.counter.words.utils.FileUtils;
 import com.counter.words.utils.TextUtils;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class FileService {
-    public List<WordGroupDto> parseFile(MultipartFile[] files) {
+    public List<WordGroupDtoRecord> parseFile(MultipartFile[] files) {
         Map<String, Long> wordsCount = getValidFiles(files).stream()
                 .map(this::getWordCount)
                 .flatMap(map -> map.entrySet().stream())
@@ -28,9 +28,9 @@ public class FileService {
                         Map.Entry::getKey,
                         Map.Entry::getValue, Long::sum));
 
-        Map<String, List<WordCount>> wordGroupMap = wordsCount.entrySet().stream()
+        Map<String, List<WordCountRecord>> wordGroupMap = wordsCount.entrySet().stream()
                 .map(FileUtils::buildWordCount)
-                .collect(Collectors.groupingBy(WordCount::getGroup, TreeMap::new, Collectors.toList()));
+                .collect(Collectors.groupingBy(WordCountRecord::getGroup, TreeMap::new, Collectors.toList()));
 
         return wordGroupMap.entrySet().stream()
                 .map(FileUtils::buildWordGroupDto)

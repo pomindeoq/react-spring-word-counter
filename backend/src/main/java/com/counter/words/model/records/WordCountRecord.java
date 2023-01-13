@@ -1,11 +1,13 @@
-package com.counter.words.model;
+package com.counter.words.model.records;
 
+import com.counter.words.model.Groupable;
+import com.counter.words.model.enums.WordGroup;
 import lombok.Builder;
 
 import java.util.EnumSet;
 
 @Builder
-public record WordCount(String word, Long count) implements Groupable {
+public record WordCountRecord(String word, Long count) implements Groupable {
     @Override
     public String getGroup() {
         if (this.word == null || this.word.length() == 0) {

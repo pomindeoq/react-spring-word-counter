@@ -1,4 +1,4 @@
-package com.counter.words.model;
+package com.counter.words.model.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

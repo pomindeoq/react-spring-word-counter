@@ -1,6 +1,6 @@
 package com.counter.words.controller;
 
-import com.counter.words.model.WordGroupDto;
+import com.counter.words.model.records.WordGroupDtoRecord;
 import com.counter.words.service.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/upload")
-    public ResponseEntity<List<WordGroupDto>> uploadFiles(@RequestParam(value = "file", required = false) MultipartFile[] files){
+    public ResponseEntity<List<WordGroupDtoRecord>> uploadFiles(@RequestParam(value = "file", required = false) MultipartFile[] files){
         return ResponseEntity.ok(fileService.parseFile(files));
     }
 }

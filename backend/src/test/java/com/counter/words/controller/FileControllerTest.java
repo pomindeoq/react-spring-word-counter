@@ -3,9 +3,9 @@ package com.counter.words.controller;
 import com.counter.words.WordsApplicationTests;
 import com.counter.words.exception.GeneralException;
 import com.counter.words.exception.constants.ErrorCodes;
-import com.counter.words.model.WordCount;
-import com.counter.words.model.WordGroup;
-import com.counter.words.model.WordGroupDto;
+import com.counter.words.model.records.WordCountRecord;
+import com.counter.words.model.enums.WordGroup;
+import com.counter.words.model.records.WordGroupDtoRecord;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -87,9 +87,9 @@ class FileControllerTest extends WordsApplicationTests {
                 new MultipartFile[]{
                         new MockMultipartFile("file", "file.txt", "text/plain", "test".getBytes())
                 };
-        List<WordGroupDto> wordGroupDtos = List.of(WordGroupDto.builder()
+        List<WordGroupDtoRecord> wordGroupDtoRecords = List.of(WordGroupDtoRecord.builder()
                 .name(WordGroup.OU.getName())
-                .words(List.of(WordCount.builder()
+                .words(List.of(WordCountRecord.builder()
                         .word("test")
                         .count(1L)
                         .build()))
@@ -98,7 +98,7 @@ class FileControllerTest extends WordsApplicationTests {
         var responseEntity = fileController.uploadFiles(files);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(wordGroupDtos, responseEntity.getBody());
+        assertEquals(wordGroupDtoRecords, responseEntity.getBody());
     }
 
     @Test
@@ -108,9 +108,9 @@ class FileControllerTest extends WordsApplicationTests {
                         new MockMultipartFile("file", "file.txt", "text/plain", "!@#$%^&&test239487';'/.,]][;;".getBytes()),
                         new MockMultipartFile("file", "file.txt", "text/plain", "".getBytes())
                 };
-        List<WordGroupDto> wordGroupDtos = List.of(WordGroupDto.builder()
+        List<WordGroupDtoRecord> wordGroupDtoRecords = List.of(WordGroupDtoRecord.builder()
                 .name(WordGroup.OU.getName())
-                .words(List.of(WordCount.builder()
+                .words(List.of(WordCountRecord.builder()
                         .word("test")
                         .count(1L)
                         .build()))
@@ -119,7 +119,7 @@ class FileControllerTest extends WordsApplicationTests {
         var responseEntity = fileController.uploadFiles(files);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(wordGroupDtos, responseEntity.getBody());
+        assertEquals(wordGroupDtoRecords, responseEntity.getBody());
     }
 
     @Test
@@ -136,7 +136,7 @@ class FileControllerTest extends WordsApplicationTests {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(4, Objects.requireNonNull(responseEntity.getBody()).size());
         assertEquals(92, Objects.requireNonNull(responseEntity.getBody()).stream()
-                .map(WordGroupDto::words)
+                .map(WordGroupDtoRecord::words)
                 .mapToLong(Collection::size)
                 .sum());
     }

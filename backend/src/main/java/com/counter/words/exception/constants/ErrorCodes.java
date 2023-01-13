@@ -16,10 +16,6 @@ public enum ErrorCodes {
         this.message = message;
     }
 
-    public void throwException() {
-        throw new GeneralException(this.message, this.name());
-    }
-
     public GeneralException getException() {
         return new GeneralException(this.message, this.name());
     }
