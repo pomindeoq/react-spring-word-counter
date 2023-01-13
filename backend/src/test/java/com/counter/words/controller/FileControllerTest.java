@@ -12,7 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,7 +38,7 @@ class FileControllerTest extends WordsApplicationTests {
     void filesMissingShouldThrowException() {
         MultipartFile[] files = null;
 
-        GeneralException actualException = assertThrows(GeneralException.class, () -> {
+        var actualException = assertThrows(GeneralException.class, () -> {
             fileController.uploadFiles(files);
         });
 
@@ -56,11 +55,11 @@ class FileControllerTest extends WordsApplicationTests {
                         new MockMultipartFile("file", "file.txt", "text/plain", "".getBytes())
                 };
 
-        GeneralException actualException = assertThrows(GeneralException.class, () -> {
+        var actualException = assertThrows(GeneralException.class, () -> {
             fileController.uploadFiles(files);
         });
 
-        GeneralException expectedException = ErrorCodes.FILES_EMPTY.getException();
+        var expectedException = ErrorCodes.FILES_EMPTY.getException();
         assertEquals(expectedException.getMessage(), actualException.getMessage());
         assertEquals(expectedException.getCode(), actualException.getCode());
     }
@@ -73,11 +72,11 @@ class FileControllerTest extends WordsApplicationTests {
                         new MockMultipartFile("file", "file.json", "application/json", "text".getBytes())
                 };
 
-        GeneralException actualException = assertThrows(GeneralException.class, () -> {
+        var actualException = assertThrows(GeneralException.class, () -> {
             fileController.uploadFiles(files);
         });
 
-        GeneralException expectedException = ErrorCodes.FILES_TYPE_NOT_VALID.getException();
+        var expectedException = ErrorCodes.FILES_TYPE_NOT_VALID.getException();
         assertEquals(expectedException.getMessage(), actualException.getMessage());
         assertEquals(expectedException.getCode(), actualException.getCode());
     }
@@ -96,7 +95,7 @@ class FileControllerTest extends WordsApplicationTests {
                         .build()))
                 .build());
 
-        ResponseEntity<List<WordGroupDto>> responseEntity = fileController.uploadFiles(files);
+        var responseEntity = fileController.uploadFiles(files);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(wordGroupDtos, responseEntity.getBody());
@@ -117,7 +116,7 @@ class FileControllerTest extends WordsApplicationTests {
                         .build()))
                 .build());
 
-        ResponseEntity<List<WordGroupDto>> responseEntity = fileController.uploadFiles(files);
+        var responseEntity = fileController.uploadFiles(files);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(wordGroupDtos, responseEntity.getBody());
@@ -132,12 +131,12 @@ class FileControllerTest extends WordsApplicationTests {
             files[i] = new MockMultipartFile(file.getName()+i, "testing"+i+".txt", "text/plain",  Files.readAllBytes(file.toPath()));
         }
 
-        ResponseEntity<List<WordGroupDto>> responseEntity = fileController.uploadFiles(files);
+        var responseEntity = fileController.uploadFiles(files);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(4, Objects.requireNonNull(responseEntity.getBody()).size());
         assertEquals(92, Objects.requireNonNull(responseEntity.getBody()).stream()
-                .map(WordGroupDto::getWords)
+                .map(WordGroupDto::words)
                 .mapToLong(Collection::size)
                 .sum());
     }
